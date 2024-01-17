@@ -1,3 +1,6 @@
+let selctedRow=null;
+
+
 //Add data
 document.querySelector("#form-users").addEventListener("submit", (e) => {
   e.preventDefault();
@@ -6,7 +9,9 @@ document.querySelector("#form-users").addEventListener("submit", (e) => {
   const email = document.getElementById("email").value;
   const age = document.getElementById("age").value;
   const newUser = new User(firstName, lastName, email, Number(age));
+  DB.users.push(newUser);
   console.log(newUser);
+  console.log(DB.users);
 });
 
 //Delete data

@@ -33,7 +33,7 @@ class User {
   
     set email(newEmail) {
       if (typeof newEmail === "string" && newLastName.length > 0) {
-        this._age = newAge;
+        this._email = newEmail;
       } else {
         console.error("Email must be a non-empty string");
       }
