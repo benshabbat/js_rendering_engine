@@ -1,5 +1,4 @@
-let selctedRow=null;
-
+let selctedRow = null;
 
 //Add data
 document.querySelector("#form-users").addEventListener("submit", (e) => {
@@ -15,15 +14,18 @@ document.querySelector("#form-users").addEventListener("submit", (e) => {
 });
 
 //Delete data
-
+document.querySelector("#table-users-list").addEventListener("click", (e) => {
+  target = e.target;
+  if (target.classList.contains("delete"))
+    target.parentElement.removeChild(target);
+});
 //Edit data
 
 //Get data
 
-
 function clearFields() {
-    document.getElementById("firstName").value="";
-    document.getElementById("lastName").value="";
-    document.getElementById("email").value="";
-    document.getElementById("age").value="";
+  document.getElementById("firstName").value = "";
+  document.getElementById("lastName").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("age").value = "";
 }
