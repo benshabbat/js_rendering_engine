@@ -14,3 +14,11 @@ document.querySelector("#form-users").addEventListener("submit", (e) => {
 //Edit data
 
 //Get data
+
+
+function clearFields() {
+    document.getElementById("firstName").value="";
+    document.getElementById("lastName").value="";
+    document.getElementById("email").value="";
+    document.getElementById("age").value="";
+}
