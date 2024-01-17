@@ -12,7 +12,7 @@
       <form id="form-users" autocomplete="off">
         <h2 class="form-title">Add User</h2>
         <div class="input-box">
-          <label>First Name</label>
+          <label for="firstName">First Name</label>
           <input
             type="text"
             name="firstName"
@@ -22,7 +22,7 @@
           />
         </div>
         <div class="input-box">
-          <label for="">Last Name</label>
+          <label for="lastName">Last Name</label>
           <input
             type="text"
             name="lastName"
@@ -32,7 +32,7 @@
           />
         </div>
         <div class="input-box">
-          <label>Email</label>
+          <label for="email">Email</label>
           <input
             type="email"
             name="email"
@@ -42,8 +42,8 @@
           />
         </div>
         <div class="input-box">
-          <label>Age</label>
-          <input type="number" name="age" id="age" placeholder="Age" required />
+          <label for="age">Age</label>
+          <input type="number" name="age" id="age" placeholder="Age" min=0 required />
         </div>
         <button type="submit" class="form-btn">Create</button>
       </form>
@@ -60,7 +60,7 @@
             <th>Buttons</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="table-users-list">
           <tr>
             <td>First Name</td>
             <td>Last Name</td>
