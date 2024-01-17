@@ -43,9 +43,16 @@
         </div>
         <div class="input-box">
           <label for="age">Age</label>
-          <input type="number" name="age" id="age" placeholder="Age" min=0 required />
+          <input
+            type="number"
+            name="age"
+            id="age"
+            placeholder="Age"
+            min="0"
+            required
+          />
         </div>
-        <button type="submit" class="form-btn">Create</button>
+        <button onclick="add()" type="submit" class="form-btn">Create</button>
       </form>
     </div>
     <h2 class="title">Users List</h2>
@@ -66,7 +73,10 @@
             <td>Last Name</td>
             <td>Email</td>
             <td>Age</td>
-            <td>Buttons</td>
+            <td>
+              <button>Delete</button>
+              <button>Edit</button>
+            </td>
           </tr>
         </tbody>
       </table>
