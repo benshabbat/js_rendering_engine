@@ -126,7 +126,9 @@ function getDataForTable(){
               <td>${user.age}</td>
               <td>${user.car.model}</td>
               <td><button class="delete">Delete</button>
-              <button class="edit">Edit</button></td>
+              <button class="edit">Edit</button>
+              <a href="car.html" class="addCar">Add Car</a>
+              </td>
               `;
     list.appendChild(row);
   });
