@@ -76,3 +76,11 @@ body {
     margin: auto;
     border: 2px solid rgba(255, 255, 255, 0.5);
 }
+.delete{
+    background-color: red;
+    color: white;
+}
+.edit{
+    background-color: green;
+    color: white;
+}
