@@ -2,11 +2,12 @@
 class User {
   static usersCount=0;
   ID= User.usersCount;
-  constructor(firstName, lastName, email, age) {
+  constructor(firstName, lastName, email, age,car="empty") {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.age = age;
+    this.car = car;
     User.usersCount++;
   }
 
@@ -55,5 +56,19 @@ class User {
   }
   get email() {
     return this._email;
+  }
+}
+
+
+//Class Car
+
+class Car {
+  static carssCount=0;
+  ID= Car.carsCount;
+  constructor(model, color, year) {
+    this.model = model;
+    this.color = color;
+    this.year = year;
+    User.carsCount++;
   }
 }

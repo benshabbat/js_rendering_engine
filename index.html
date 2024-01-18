@@ -52,7 +52,37 @@
             required
           />
         </div>
-        <button id="add" type="submit" class="form-btn">Create</button>
+        <button id="addUser" type="submit" class="form-btn">Create</button>
+      </form>
+    </div>
+    <div class="form-box">
+      <form id="form-users" autocomplete="off">
+        <h2 class="form-title">Add Car</h2>
+        <div class="input-box">
+          <label for="user">User</label>
+          <select class="usersCar"></select>
+        </div>
+        <div class="input-box">
+          <label for="color">Color</label>
+          <input
+            name="color"
+            id="color"
+            placeholder="Color"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <label for="year">Year</label>
+          <input
+            type="number"
+            name="year"
+            id="year"
+            placeholder="Year"
+            min="1990"
+            required
+          />
+        </div>
+        <button id="addCar" type="submit" class="form-btn">Create</button>
       </form>
     </div>
     <h2 class="title">Users List</h2>
@@ -65,6 +95,7 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Age</th>
+            <th>Car</th>
             <th>Buttons</th>
           </tr>
         </thead>

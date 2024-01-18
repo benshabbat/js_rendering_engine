@@ -35,6 +35,7 @@ function render() {
         <td>${lastName}</td>
         <td>${email}</td>
         <td>${age}</td>
+        <td>${car}</td>
         <td><button class="delete">Delete</button>
         <button class="edit">Edit</button></td>
         `;
@@ -54,19 +55,21 @@ function render() {
     }
     console.log(DB.users);
   });
+
   document.querySelector(".table-users-list").addEventListener("click", (e) => {
     target = e.target;
     //Delete data
     if (target.classList.contains("delete")) {
       console.log("clicked delete");
       selctedRow = target.parentNode.parentNode;
-      console.log("the id"+selctedRow.children[0].textContent);
+      console.log("the id" + selctedRow.children[0].textContent);
       //remove data from db
-      const newArr = DB.users.filter((user) =>{
-        return user.ID != selctedRow.children[0].textContent;})
-      console.log("the new array"+ newArr);
+      const newArr = DB.users.filter((user) => {
+        return user.ID != selctedRow.children[0].textContent;
+      });
+      console.log("the new array" + newArr);
       DB.users = newArr;
-      console.log("the new DB"+ DB.users);
+      console.log("the new DB" + DB.users);
       selctedRow = null;
       target.parentNode.parentNode.remove();
     }
@@ -102,6 +105,7 @@ function render() {
               <td>${user.lastName}</td>
               <td>${user.email}</td>
               <td>${user.age}</td>
+              <td>${user.car}</td>
               <td><button class="delete">Delete</button>
               <button class="edit">Edit</button></td>
               `;
@@ -109,11 +113,20 @@ function render() {
     });
     selctedRow = null;
   }
+
+  //get Users
+  DB.users.forEach((user) => {
+    const usersCar = document.querySelector(".usersCar");
+    const option = document.createElement("option");
+    option.innerHTML = user.email;
+    usersCar.appendChild(option);
+  });
+  selctedRow = null;
 }
+
 function clearFields() {
   document.getElementById("firstName").value = "";
   document.getElementById("lastName").value = "";
   document.getElementById("email").value = "";
   document.getElementById("age").value = "";
 }
-
