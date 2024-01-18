@@ -64,8 +64,9 @@ function render() {
       //remove data from db
       const newArr = DB.users.filter((user) =>{
         return user.ID != selctedRow.children[0].textContent;})
-      console.log("the new array"+newArr);
+      console.log("the new array"+ newArr);
       DB.users = newArr;
+      console.log("the new DB"+ DB.users);
       selctedRow = null;
       target.parentNode.parentNode.remove();
     }
