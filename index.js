@@ -6,7 +6,7 @@ document.onreadystatechange = function (e) {
 };
 function render() {
   let selctedRow = null;
-
+  let idUserEdit;
   //Add data
   document.querySelector("#form-users").addEventListener("submit", (e) => {
     e.preventDefault();
@@ -15,8 +15,9 @@ function render() {
     const email = document.getElementById("email").value;
     const age = document.getElementById("age").value;
     const newUser = new User(firstName, lastName, email, Number(age));
+    console.log(idUserEdit)
     DB.users.forEach((user) => {
-      if (newUser.email === user.email) {
+      if (idUserEdit === user.ID) {
         console.log("yes is equal");
         user.firstName = newUser.firstName;
         user.lastName = newUser.lastName;
@@ -44,10 +45,10 @@ function render() {
       DB.users.push(newUser);
       //if is edit
     } else {
-      selctedRow.children[0].textContent = firstName;
-      selctedRow.children[1].textContent = lastName;
-      selctedRow.children[2].textContent = email;
-      selctedRow.children[3].textContent = age;
+      selctedRow.children[1].textContent = firstName;
+      selctedRow.children[2].textContent = lastName;
+      selctedRow.children[3].textContent = email;
+      selctedRow.children[4].textContent = age;
       selctedRow = null;
       clearFields();
     }
@@ -66,13 +67,15 @@ function render() {
 
       selctedRow = target.parentNode.parentNode;
       console.log(selctedRow);
+      idUserEdit=Number(selctedRow.children[0].textContent);
       document.getElementById("firstName").value =
-        selctedRow.children[0].textContent;
-      document.getElementById("lastName").value =
         selctedRow.children[1].textContent;
-      document.getElementById("email").value =
+      document.getElementById("lastName").value =
         selctedRow.children[2].textContent;
-      document.getElementById("age").value = selctedRow.children[3].textContent;
+      document.getElementById("email").value =
+        selctedRow.children[3].textContent;
+      document.getElementById("age").value = selctedRow.children[4].textContent;
+      console.log(idUserEdit);
     }
   });
   document.querySelector(".table-users-list").addEventListener("click", (e) => {
