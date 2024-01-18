@@ -1,15 +1,15 @@
-
-
+import DB from "./db.js";
+import "./class.js";
 document.onreadystatechange = function (e) {
   if (document.readyState === "complete") {
     console.log("im ready");
     getEmailUsers();
     createCar();
     getDataForTable();
-    render();
+    render2();
   }
 };
-function render() {
+function render2() {
   let selctedRow = null;
   let idUserEdit;
   //Add data
@@ -115,26 +115,7 @@ function clearFields() {
 
 
 
-//Get data into table
-function getDataForTable(){
-  DB.users.map((user) => {
-    const list = document.querySelector(".table-users-list");
-    const row = document.createElement("tr");
-    row.innerHTML = `
-              <td>${user.ID}</td>
-              <td>${user.firstName}</td>
-              <td>${user.lastName}</td>
-              <td>${user.email}</td>
-              <td>${user.age}</td>
-              <td>${user.car.model}</td>
-              <td><button class="delete">Delete</button>
-              <button class="edit">Edit</button>
-              <a href="car.html" class="addCar">Add Car</a>
-              </td>
-              `;
-    list.appendChild(row);
-  });
-}
+
 
 
 

@@ -1,1 +1,2 @@
-import "./db"
+import render from "./render.js";
+render();
