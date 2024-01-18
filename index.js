@@ -10,6 +10,21 @@ document.querySelector("#form-users").addEventListener("submit", (e) => {
   const newUser = new User(firstName, lastName, email, Number(age));
   DB.users.push(newUser);
   console.log(DB.users);
+  if (selctedRow === null) {
+    const list = document.querySelector(".table-users-list");
+    const row = document.createElement("tr");
+    row.innerHTML = `
+          <td>${firstName}</td>
+          <td>${lastName}</td>
+          <td>${email}</td>
+          <td>${age}</td>
+          <td>          <button>Delete</button>
+          <button>Edit</button></td>
+          `;
+    list.appendChild(row);
+
+    selctedRow = null;
+  }
 });
 
 //Delete data
@@ -34,8 +49,8 @@ if (selctedRow === null) {
           <button>Edit</button></td>
           `;
     list.appendChild(row);
-});
-selctedRow = null;
+  });
+  selctedRow = null;
 }
 
 function clearFields() {

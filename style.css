@@ -68,7 +68,7 @@ body {
 /* START TABLE */
 
 .table-container {
-    max-width: 400px;
+    max-width: max-content;
     backdrop-filter: blur(7px);
     box-shadow: 0 0.4rem 0.8rem #0005;
     border-radius: 0.8rem;
