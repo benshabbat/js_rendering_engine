@@ -15,7 +15,7 @@ function render() {
     const email = document.getElementById("email").value;
     const age = document.getElementById("age").value;
     const newUser = new User(firstName, lastName, email, Number(age));
-    console.log(idUserEdit)
+    console.log(idUserEdit);
     DB.users.forEach((user) => {
       if (idUserEdit === user.ID) {
         console.log("yes is equal");
@@ -59,6 +59,16 @@ function render() {
     //Delete data
     if (target.classList.contains("delete")) {
       console.log("clicked delete");
+      selctedRow = target.parentNode.parentNode;
+      console.log(selctedRow.children[0].textContent);
+      //remove data from db
+      const newArr = DB.users.filter((user) =>{
+        return user.ID != selctedRow.children[0].textContent;})
+      console.log(newArr);
+      DB.users = newArr;
+      console.log(DB.users);
+      console.log(selctedRow);
+      selctedRow = null;
       target.parentNode.parentNode.remove();
     }
     //Edit data
@@ -67,7 +77,7 @@ function render() {
 
       selctedRow = target.parentNode.parentNode;
       console.log(selctedRow);
-      idUserEdit=Number(selctedRow.children[0].textContent);
+      idUserEdit = Number(selctedRow.children[0].textContent);
       document.getElementById("firstName").value =
         selctedRow.children[1].textContent;
       document.getElementById("lastName").value =
@@ -107,3 +117,4 @@ function clearFields() {
   document.getElementById("email").value = "";
   document.getElementById("age").value = "";
 }
+
