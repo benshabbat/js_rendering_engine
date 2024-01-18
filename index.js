@@ -105,7 +105,7 @@ function render() {
               <td>${user.lastName}</td>
               <td>${user.email}</td>
               <td>${user.age}</td>
-              <td>${user.car}</td>
+              <td>${user.car.model}</td>
               <td><button class="delete">Delete</button>
               <button class="edit">Edit</button></td>
               `;
@@ -113,18 +113,20 @@ function render() {
     });
     selctedRow = null;
 
-
-    document.querySelector("#form-users").addEventListener("submit", (e) => {
+    document.querySelector("#form-cars").addEventListener("submit", (e) => {
       e.preventDefault();
+      const idUser = document.getElementById("user-list-car").value;
       const model = document.getElementById("model").value;
       const color = document.getElementById("color").value;
       const year = document.getElementById("year").value;
-      const newUser = new User(firstName, lastName, email, Number(age));})
+      const newCar = new Car(model, color, Number(year));
+      DB.users.forEach((user) => {
+        if (idUser == user.id) user.setCar(newCar);
+      });
 
-
-
-
-
+      DB.cars.push(newCar);
+      console.log(DB.cars)
+    });
   }
 
   //get Users

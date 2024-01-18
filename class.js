@@ -35,6 +35,11 @@ class User {
     }
   }
 
+  set car(newCar) {
+      this._car = newCar;
+ 
+  }
+
   set email(newEmail) {
     this._email = newEmail;
   }
