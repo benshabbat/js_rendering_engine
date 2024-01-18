@@ -112,16 +112,29 @@ function render() {
       list.appendChild(row);
     });
     selctedRow = null;
+
+
+    document.querySelector("#form-users").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const model = document.getElementById("model").value;
+      const color = document.getElementById("color").value;
+      const year = document.getElementById("year").value;
+      const newUser = new User(firstName, lastName, email, Number(age));})
+
+
+
+
+
   }
 
   //get Users
   DB.users.forEach((user) => {
     const usersCar = document.querySelector(".usersCar");
     const option = document.createElement("option");
+    option.value = user.ID;
     option.innerHTML = user.email;
     usersCar.appendChild(option);
   });
-  selctedRow = null;
 }
 
 function clearFields() {
