@@ -1,9 +1,10 @@
 document.onreadystatechange = function (e) {
   if (document.readyState === "complete") {
     console.log("im ready");
-    render();
+    getEmailUsers();
     createCar();
     getDataForTable();
+    render();
   }
 };
 function render() {
@@ -97,13 +98,7 @@ function render() {
   });
 
   //get Users
-  DB.users.forEach((user) => {
-    const usersCar = document.querySelector(".usersCar");
-    const option = document.createElement("option");
-    option.value = user.ID;
-    option.innerHTML = user.email;
-    usersCar.appendChild(option);
-  });
+
 
 
 
@@ -159,3 +154,14 @@ function getDataForTable(){
     });
   
   }
+//getEmailUsers
+function getEmailUsers(){
+
+  DB.users.forEach((user) => {
+    const usersCar = document.querySelector(".usersCar");
+    const option = document.createElement("option");
+    option.value = user.ID;
+    option.innerHTML = user.email;
+    usersCar.appendChild(option);
+  });
+}
