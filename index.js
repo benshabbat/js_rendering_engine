@@ -15,10 +15,15 @@ function render() {
     const email = document.getElementById("email").value;
     const age = document.getElementById("age").value;
     const newUser = new User(firstName, lastName, email, Number(age));
+    DB.users.forEach((user) => {
+      if (newUser.email === user.email) {
+        user = newUser;
+      }
+    });
     if (selctedRow === null) {
-        const list = document.querySelector(".table-users-list");
-        const row = document.createElement("tr");
-        row.innerHTML = `
+      const list = document.querySelector(".table-users-list");
+      const row = document.createElement("tr");
+      row.innerHTML = `
         <td>${firstName}</td>
         <td>${lastName}</td>
         <td>${email}</td>
@@ -26,21 +31,22 @@ function render() {
         <td><button class="delete">Delete</button>
         <button class="edit">Edit</button></td>
         `;
-        list.appendChild(row);
-        
-        selctedRow = null;
+      list.appendChild(row);
+
+      selctedRow = null;
+      clearFields();
+      DB.users.push(newUser);
+    } else {
+      selctedRow.children[0].textContent = firstName;
+      selctedRow.children[1].textContent = lastName;
+      selctedRow.children[2].textContent = email;
+      selctedRow.children[3].textContent = age;
+      selctedRow = null;
+      clearFields();
     }
-    else{
-        selctedRow.children[0].textContent=firstName;
-        selctedRow.children[1].textContent=lastName;
-        selctedRow.children[2].textContent=email;
-        selctedRow.children[3].textContent=age;
-        selctedRow =null;
-    }
-    DB.users.push(newUser);
     console.log(DB.users);
-});
-document.querySelector(".table-users-list").addEventListener("click", (e) => {
+  });
+  document.querySelector(".table-users-list").addEventListener("click", (e) => {
     target = e.target;
     //Delete data
     if (target.classList.contains("delete")) {
@@ -50,6 +56,7 @@ document.querySelector(".table-users-list").addEventListener("click", (e) => {
     //Edit data
     if (target.classList.contains("edit")) {
       console.log("clicked edit");
+
       selctedRow = target.parentNode.parentNode;
       console.log(selctedRow);
       document.getElementById("firstName").value =
