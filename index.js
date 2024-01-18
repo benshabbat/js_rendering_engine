@@ -60,14 +60,12 @@ function render() {
     if (target.classList.contains("delete")) {
       console.log("clicked delete");
       selctedRow = target.parentNode.parentNode;
-      console.log(selctedRow.children[0].textContent);
+      console.log("the id"+selctedRow.children[0].textContent);
       //remove data from db
       const newArr = DB.users.filter((user) =>{
         return user.ID != selctedRow.children[0].textContent;})
-      console.log(newArr);
+      console.log("the new array"+newArr);
       DB.users = newArr;
-      console.log(DB.users);
-      console.log(selctedRow);
       selctedRow = null;
       target.parentNode.parentNode.remove();
     }
