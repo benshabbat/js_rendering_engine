@@ -1,5 +1,4 @@
 import DB from "./db.js";
-import "./class.js";
 document.onreadystatechange = function (e) {
   if (document.readyState === "complete") {
     console.log("im ready");
@@ -44,26 +43,43 @@ function render2() {
     target = e.target;
     //Delete data
     if (target.classList.contains("delete")) {
-      deleteData();
+      selctedRow = target.parentNode.parentNode;
+      deleteData(selctedRow);
     }
 
     //Edit data
     if (target.classList.contains("edit")) {
-      insertToFormEditData();
+      selctedRow = target.parentNode.parentNode;
+      insertToFormEditData(selctedRow);
     }
   });
-
 
   //Creat Car
   document.querySelector("#form-cars").addEventListener("submit", (e) => {
     createCar();
   });
-
 }
 
-
-
-
+//Get data into table
+function getDataForTable() {
+  DB.users.map((user) => {
+    const list = document.querySelector(".table-users-list");
+    const row = document.createElement("tr");
+    row.innerHTML = `
+              <td>${user.ID}</td>
+              <td>${user.firstName}</td>
+              <td>${user.lastName}</td>
+              <td>${user.email}</td>
+              <td>${user.age}</td>
+              <td>${user.car.model}</td>
+              <td><button class="delete">Delete</button>
+              <button class="edit">Edit</button>
+              <a href="car.html" class="addCar">Add Car</a>
+              </td>
+              `;
+    list.appendChild(row);
+  });
+}
 function clearFields() {
   document.getElementById("firstName").value = "";
   document.getElementById("lastName").value = "";
@@ -97,15 +113,15 @@ function getEmailUsers() {
   });
 }
 
-function addUser() {
+function addUser(newUser) {
   const list = document.querySelector(".table-users-list");
   const row = document.createElement("tr");
   row.innerHTML = `
   <td>${newUser.ID}</td>
-    <td>${firstName}</td>
-    <td>${lastName}</td>
-    <td>${email}</td>
-    <td>${age}</td>
+    <td>${newUser.firstName}</td>
+    <td>${newUser.lastName}</td>
+    <td>${newUser.email}</td>
+    <td>${newUser.age}</td>
     <td>${newUser.car.model}</td>
     <td><button class="delete">Delete</button>
     <button class="edit">Edit</button></td>
@@ -115,9 +131,9 @@ function addUser() {
   DB.users.push(newUser);
 }
 
-function deleteData() {
+function deleteData(selctedRow) {
   console.log("clicked delete");
-  selctedRow = target.parentNode.parentNode;
+  
   console.log("the id" + selctedRow.children[0].textContent);
   //remove data from db
   const newArr = DB.users.filter((user) => {
@@ -130,7 +146,7 @@ function deleteData() {
   target.parentNode.parentNode.remove();
 }
 
-function insertToFormEditData() {
+function insertToFormEditData(target) {
   console.log("clicked edit");
 
   selctedRow = target.parentNode.parentNode;
@@ -145,11 +161,11 @@ function insertToFormEditData() {
   console.log(idUserEdit);
 }
 
-function editUser() {
-  selctedRow.children[1].textContent = firstName;
-  selctedRow.children[2].textContent = lastName;
-  selctedRow.children[3].textContent = email;
-  selctedRow.children[4].textContent = age;
+function editUser(newUser) {
+  selctedRow.children[1].textContent = newUser.firstName;
+  selctedRow.children[2].textContent = newUser.lastName;
+  selctedRow.children[3].textContent = newUser.email;
+  selctedRow.children[4].textContent = newUser.age;
   selctedRow = null;
   clearFields();
 }
