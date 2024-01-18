@@ -2,6 +2,8 @@ document.onreadystatechange = function (e) {
   if (document.readyState === "complete") {
     console.log("im ready");
     render();
+    createCar();
+    getDataForTable();
   }
 };
 function render() {
@@ -35,7 +37,7 @@ function render() {
         <td>${lastName}</td>
         <td>${email}</td>
         <td>${age}</td>
-        <td>${car}</td>
+        <td>${newUser.car.model}</td>
         <td><button class="delete">Delete</button>
         <button class="edit">Edit</button></td>
         `;
@@ -94,12 +96,34 @@ function render() {
     target = e.target;
   });
 
-  //Get data
-  if (selctedRow === null) {
-    DB.users.map((user) => {
-      const list = document.querySelector(".table-users-list");
-      const row = document.createElement("tr");
-      row.innerHTML = `
+  //get Users
+  DB.users.forEach((user) => {
+    const usersCar = document.querySelector(".usersCar");
+    const option = document.createElement("option");
+    option.value = user.ID;
+    option.innerHTML = user.email;
+    usersCar.appendChild(option);
+  });
+
+
+
+
+}
+function clearFields() {
+  document.getElementById("firstName").value = "";
+  document.getElementById("lastName").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("age").value = "";
+}
+
+
+
+//Get data into table
+function getDataForTable(){
+  DB.users.map((user) => {
+    const list = document.querySelector(".table-users-list");
+    const row = document.createElement("tr");
+    row.innerHTML = `
               <td>${user.ID}</td>
               <td>${user.firstName}</td>
               <td>${user.lastName}</td>
@@ -109,10 +133,14 @@ function render() {
               <td><button class="delete">Delete</button>
               <button class="edit">Edit</button></td>
               `;
-      list.appendChild(row);
-    });
-    selctedRow = null;
+    list.appendChild(row);
+  });
+}
 
+
+
+  //Creat Car
+  function createCar(){
     document.querySelector("#form-cars").addEventListener("submit", (e) => {
       e.preventDefault();
       const idUser = document.getElementById("user-list-car").value;
@@ -121,27 +149,13 @@ function render() {
       const year = document.getElementById("year").value;
       const newCar = new Car(model, color, Number(year));
       DB.users.forEach((user) => {
-        if (idUser == user.id) user.setCar(newCar);
+        if (idUser == user.ID) user.car = newCar;
       });
-
+  
       DB.cars.push(newCar);
-      console.log(DB.cars)
+     
+      console.log(DB.cars);
+      console.log(DB.users);
     });
+  
   }
-
-  //get Users
-  DB.users.forEach((user) => {
-    const usersCar = document.querySelector(".usersCar");
-    const option = document.createElement("option");
-    option.value = user.ID;
-    option.innerHTML = user.email;
-    usersCar.appendChild(option);
-  });
-}
-
-function clearFields() {
-  document.getElementById("firstName").value = "";
-  document.getElementById("lastName").value = "";
-  document.getElementById("email").value = "";
-  document.getElementById("age").value = "";
-}

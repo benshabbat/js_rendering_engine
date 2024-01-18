@@ -1,8 +1,8 @@
 //Class User
 class User {
-  static usersCount=0;
-  ID= User.usersCount;
-  constructor(firstName, lastName, email, age,car="empty") {
+  static usersCount = 0;
+  ID = User.usersCount;
+  constructor(firstName, lastName, email, age, car = "empty") {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
@@ -36,22 +36,21 @@ class User {
   }
 
   set car(newCar) {
-      this._car = newCar;
- 
+    this._car = newCar;
   }
-  
+
   set email(newEmail) {
     this._email = newEmail;
   }
-  
+
   get firstName() {
     return this._firstName;
   }
-  
+
   get lastName() {
     return this._lastName;
   }
-  
+
   get fullName() {
     return this._firstName + " " + this._lastName;
   }
@@ -62,15 +61,16 @@ class User {
   get email() {
     return this._email;
   }
-  get car() { return this._car; }
+  get car() {
+    return this._car;
+  }
 }
-
 
 //Class Car
 
 class Car {
-  static carsCount=0;
-  ID= Car.carsCount;
+  static carsCount = 0;
+  ID = Car.carsCount;
   constructor(model, color, year) {
     this.model = model;
     this.color = color;
