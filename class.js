@@ -39,19 +39,19 @@ class User {
       this._car = newCar;
  
   }
-
+  
   set email(newEmail) {
     this._email = newEmail;
   }
-
+  
   get firstName() {
     return this._firstName;
   }
-
+  
   get lastName() {
     return this._lastName;
   }
-
+  
   get fullName() {
     return this._firstName + " " + this._lastName;
   }
@@ -62,18 +62,19 @@ class User {
   get email() {
     return this._email;
   }
+  get car() { return this._car; }
 }
 
 
 //Class Car
 
 class Car {
-  static carssCount=0;
+  static carsCount=0;
   ID= Car.carsCount;
   constructor(model, color, year) {
     this.model = model;
     this.color = color;
     this.year = year;
-    User.carsCount++;
+    Car.carsCount++;
   }
 }
