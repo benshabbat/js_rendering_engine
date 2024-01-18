@@ -9,6 +9,7 @@ document.querySelector("#form-users").addEventListener("submit", (e) => {
   const age = document.getElementById("age").value;
   const newUser = new User(firstName, lastName, email, Number(age));
   DB.users.push(newUser);
+  console.log(DB.users)
   if (selctedRow === null) {
     const list = document.querySelector(".table-users-list");
     const row = document.createElement("tr");
