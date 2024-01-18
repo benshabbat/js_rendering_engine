@@ -1,12 +1,13 @@
 //Class User
 class User {
   static usersCount=0;
+  ID= User.usersCount;
   constructor(firstName, lastName, email, age) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.age = age;
-    this.ID= User.userCount++;
+    User.usersCount++;
   }
 
   set firstName(newFirstName) {
