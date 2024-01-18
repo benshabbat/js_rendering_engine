@@ -17,13 +17,19 @@ function render() {
     const newUser = new User(firstName, lastName, email, Number(age));
     DB.users.forEach((user) => {
       if (newUser.email === user.email) {
-        user = newUser;
+        console.log("yes is equal");
+        user.firstName = newUser.firstName;
+        user.lastName = newUser.lastName;
+        user.email = newUser.email;
+        user.age = newUser.age;
       }
     });
+    //if is add
     if (selctedRow === null) {
       const list = document.querySelector(".table-users-list");
       const row = document.createElement("tr");
       row.innerHTML = `
+      <td>${newUser.ID}</td>
         <td>${firstName}</td>
         <td>${lastName}</td>
         <td>${email}</td>
@@ -36,6 +42,7 @@ function render() {
       selctedRow = null;
       clearFields();
       DB.users.push(newUser);
+      //if is edit
     } else {
       selctedRow.children[0].textContent = firstName;
       selctedRow.children[1].textContent = lastName;
@@ -78,6 +85,7 @@ function render() {
       const list = document.querySelector(".table-users-list");
       const row = document.createElement("tr");
       row.innerHTML = `
+              <td>${user.ID}</td>
               <td>${user.firstName}</td>
               <td>${user.lastName}</td>
               <td>${user.email}</td>
@@ -89,11 +97,10 @@ function render() {
     });
     selctedRow = null;
   }
-
-  function clearFields() {
-    document.getElementById("firstName").value = "";
-    document.getElementById("lastName").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("age").value = "";
-  }
+}
+function clearFields() {
+  document.getElementById("firstName").value = "";
+  document.getElementById("lastName").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("age").value = "";
 }
