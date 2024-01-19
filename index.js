@@ -1,4 +1,5 @@
 import DB from "./db.js";
+import { Car, User } from "./class.js";
 document.onreadystatechange = function (e) {
   if (document.readyState === "complete") {
     console.log("im ready");
@@ -9,7 +10,7 @@ document.onreadystatechange = function (e) {
 };
 function render2() {
   let selctedRow = null;
-  
+  let idUserEdit;
   //Add data
   document.querySelector("#form-users").addEventListener("submit", (e) => {
     e.preventDefault();
@@ -34,7 +35,7 @@ function render2() {
     }
     //if is edit
     else {
-      editUser(newUser);
+      editUser(newUser,selctedRow);
     }
     console.log(DB.users);
   });
@@ -52,7 +53,7 @@ function render2() {
     //Edit data
     if (target.classList.contains("edit")) {
       // selctedRow = target.parentNode.parentNode
-      insertToFormEditData(selctedRow);
+      insertToFormEditData(selctedRow, idUserEdit);
     }
   });
 
@@ -148,23 +149,26 @@ function deleteData(selctedRow) {
   selctedRow = null;
 }
 
-function insertToFormEditData(selctedRow) {
-  let idUserEdit;
+function insertToFormEditData(selctedRow, idUserEdit) {
   console.log("clicked edit");
-
-  // selctedRow = target.parentNode.parentNode;
+  [
+    document.getElementById("firstName").value,
+    document.getElementById("lastName").value,
+    document.getElementById("email").value,
+    document.getElementById("age").value,
+  ] = [
+    selctedRow.children[1].textContent,
+    selctedRow.children[2].textContent,
+    selctedRow.children[3].textContent,
+    selctedRow.children[4].textContent,
+  ];
   console.log(selctedRow);
   idUserEdit = Number(selctedRow.children[0].textContent);
-  document.getElementById("firstName").value =
-    selctedRow.children[1].textContent;
-  document.getElementById("lastName").value =
-    selctedRow.children[2].textContent;
-  document.getElementById("email").value = selctedRow.children[3].textContent;
-  document.getElementById("age").value = selctedRow.children[4].textContent;
+
   console.log(idUserEdit);
 }
 
-function editUser(newUser) {
+function editUser(newUser,selctedRow) {
   selctedRow.children[1].textContent = newUser.firstName;
   selctedRow.children[2].textContent = newUser.lastName;
   selctedRow.children[3].textContent = newUser.email;

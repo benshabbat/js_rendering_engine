@@ -34,9 +34,7 @@ function render() {
   });
 
   document.querySelector(".table-users-list").addEventListener("click", (e) => {
-    console.log(e.target);
     const target = e.target;
-    console.log(target);
     selctedRow = target.parentNode.parentNode;
     //Delete data
     if (target.classList.contains("delete")) {
@@ -45,7 +43,6 @@ function render() {
 
     //Edit data
     if (target.classList.contains("edit")) {
-      // selctedRow = target.parentNode.parentNode
       insertToFormEditData(selctedRow);
     }
   });
@@ -103,5 +100,19 @@ function deleteData(selctedRow) {
   console.log("the new DB" + DB.users);
   selctedRow.remove();
   selctedRow = null;
+}
+
+function insertToFormEditData(selctedRow) {
+  let idUserEdit;
+  console.log("clicked edit");
+  console.log(selctedRow);
+  idUserEdit = Number(selctedRow.children[0].textContent);
+  document.getElementById("firstName").value =
+    selctedRow.children[1].textContent;
+  document.getElementById("lastName").value =
+    selctedRow.children[2].textContent;
+  document.getElementById("email").value = selctedRow.children[3].textContent;
+  document.getElementById("age").value = selctedRow.children[4].textContent;
+  console.log(idUserEdit);
 }
 export default render;
