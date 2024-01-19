@@ -1,11 +1,17 @@
 import DB from "./db.js";
 import { Car, User } from "./class.js";
 
-function clearFields() {
+function clearFieldsUser() {
   document.getElementById("firstName").value = "";
   document.getElementById("lastName").value = "";
   document.getElementById("email").value = "";
   document.getElementById("age").value = "";
+}
+
+function clearFieldsCar() {
+  document.getElementById("model").value = "";
+  document.getElementById("color").value = "";
+  document.getElementById("year").value = "";
 }
 
 //Get data into table
@@ -42,8 +48,8 @@ function addUser(newUser) {
         <button class="edit">Edit</button></td>
         `;
   list.appendChild(row);
-  clearFields();
   DB.users.push(newUser);
+  clearFieldsUser();
 }
 
 function deleteData(selctedRow) {
@@ -86,7 +92,7 @@ function editUser(newUser, selctedRow) {
   selctedRow.children[3].textContent = newUser.email;
   selctedRow.children[4].textContent = newUser.age;
   selctedRow = null;
-  clearFields();
+  clearFieldsUser();
 }
 function createCar() {
   // e.preventDefault();
@@ -105,6 +111,7 @@ function createCar() {
   checkData.parentNode.children[5].textContent = newCar.model;
   console.log(DB.cars);
   console.log(DB.users);
+  clearFieldsCar();
 }
 
 function getEmailUsers() {
