@@ -105,74 +105,9 @@ function createCar() {
   console.log(DB.cars);
   console.log(DB.users);
 }
-//getEmailUsers
-function getEmailUsers() {
-  DB.users.forEach((user) => {
-    const usersCar = document.querySelector(".usersCar");
-    const option = document.createElement("option");
-    option.value = user.ID;
-    option.innerHTML = user.email;
-    usersCar.appendChild(option);
-  });
+
 }
 
-function addUser(newUser) {
-  const list = document.querySelector(".table-users-list");
-  const row = document.createElement("tr");
-  row.innerHTML = `
-  <td>${newUser.ID}</td>
-    <td>${newUser.firstName}</td>
-    <td>${newUser.lastName}</td>
-    <td>${newUser.email}</td>
-    <td>${newUser.age}</td>
-    <td>${newUser.car.model}</td>
-    <td><button class="delete">Delete</button>
-    <button class="edit">Edit</button></td>
-    `;
-  list.appendChild(row);
-  clearFields();
-  DB.users.push(newUser);
-}
 
-function deleteData(selctedRow) {
-  console.log("clicked delete");
 
-  console.log("the id" + selctedRow.children[0].textContent);
-  //remove data from db
-  const newArr = DB.users.filter((user) => {
-    return user.ID != selctedRow.children[0].textContent;
-  });
-  console.log("the new array" + newArr);
-  DB.users = newArr;
-  console.log("the new DB" + DB.users);
-  selctedRow.remove();
-  selctedRow = null;
-}
 
-function insertToFormEditData(selctedRow, idUserEdit) {
-  console.log("clicked edit");
-  [
-    document.getElementById("firstName").value,
-    document.getElementById("lastName").value,
-    document.getElementById("email").value,
-    document.getElementById("age").value,
-  ] = [
-    selctedRow.children[1].textContent,
-    selctedRow.children[2].textContent,
-    selctedRow.children[3].textContent,
-    selctedRow.children[4].textContent,
-  ];
-  console.log(selctedRow);
-  idUserEdit = Number(selctedRow.children[0].textContent);
-
-  console.log(idUserEdit);
-}
-
-function editUser(newUser,selctedRow) {
-  selctedRow.children[1].textContent = newUser.firstName;
-  selctedRow.children[2].textContent = newUser.lastName;
-  selctedRow.children[3].textContent = newUser.email;
-  selctedRow.children[4].textContent = newUser.age;
-  selctedRow = null;
-  clearFields();
-}
