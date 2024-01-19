@@ -9,7 +9,7 @@ document.onreadystatechange = function (e) {
 };
 function render2() {
   let selctedRow = null;
-  let idUserEdit;
+  
   //Add data
   document.querySelector("#form-users").addEventListener("submit", (e) => {
     e.preventDefault();
@@ -40,16 +40,18 @@ function render2() {
   });
 
   document.querySelector(".table-users-list").addEventListener("click", (e) => {
-    target = e.target;
+    console.log(e.target);
+    const target = e.target;
+    console.log(target);
+    selctedRow = target.parentNode.parentNode;
     //Delete data
     if (target.classList.contains("delete")) {
-      selctedRow = target.parentNode.parentNode;
       deleteData(selctedRow);
     }
 
     //Edit data
     if (target.classList.contains("edit")) {
-      selctedRow = target.parentNode.parentNode;
+      // selctedRow = target.parentNode.parentNode
       insertToFormEditData(selctedRow);
     }
   });
@@ -133,7 +135,7 @@ function addUser(newUser) {
 
 function deleteData(selctedRow) {
   console.log("clicked delete");
-  
+
   console.log("the id" + selctedRow.children[0].textContent);
   //remove data from db
   const newArr = DB.users.filter((user) => {
@@ -142,14 +144,15 @@ function deleteData(selctedRow) {
   console.log("the new array" + newArr);
   DB.users = newArr;
   console.log("the new DB" + DB.users);
+  selctedRow.remove();
   selctedRow = null;
-  target.parentNode.parentNode.remove();
 }
 
-function insertToFormEditData(target) {
+function insertToFormEditData(selctedRow) {
+  let idUserEdit;
   console.log("clicked edit");
 
-  selctedRow = target.parentNode.parentNode;
+  // selctedRow = target.parentNode.parentNode;
   console.log(selctedRow);
   idUserEdit = Number(selctedRow.children[0].textContent);
   document.getElementById("firstName").value =

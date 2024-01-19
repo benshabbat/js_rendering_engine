@@ -1,4 +1,4 @@
-import "./class.js"
+import {Car,User} from "./class.js"
 
 //create a car Static
 const car1 = new Car("Siat","white",2022)

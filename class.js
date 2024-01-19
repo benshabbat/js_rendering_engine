@@ -1,5 +1,5 @@
 //Class User
-class User {
+ class User {
   static usersCount = 0;
   ID = User.usersCount;
   constructor(firstName, lastName, email, age, car = "empty") {
@@ -68,7 +68,7 @@ class User {
 
 //Class Car
 
-class Car {
+ class Car {
   static carsCount = 0;
   ID = Car.carsCount;
   constructor(model, color, year) {
@@ -78,3 +78,6 @@ class Car {
     Car.carsCount++;
   }
 }
+
+
+export {Car,User}
