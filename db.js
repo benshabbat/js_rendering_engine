@@ -2,6 +2,7 @@ import { Car, User } from "./class.js";
 
 //create a car Static
 const car1 = new Car("Siat", "white", 2022);
+const car2 = new Car("Ferrari", "blue", 2023);
 
 //Create users Static
 
